@@ -1,0 +1,38 @@
+name: Auto Deploying Server
+
+on:
+    push:
+        branches:
+            - main 
+
+jobs: 
+    build : 
+        runs-on: ubuntu-latest
+        steps: 
+            - name: Checkout
+              uses: actions/checkout@v4
+            - name: Build & push dockerhub 
+              run: | 
+                docker login -u ${{secrets.DOCKER_USERNAME}} -p ${{secrets.DOCKER_ACCESS_TOKEN}}
+                docker build -t ${{secrets.DOCKER_USERNAME}}/forge_flows_front:v1 .
+                docker push ${{secrets.DOCKER_USERNAME}}/forge_flows_front:v1
+    
+    deploy : 
+        runs-on: ubuntu-latest
+        steps:
+            - name: VPS Login 
+              uses: appleboy/ssh-action@v1.0.3
+              with: 
+                host: ${{secrets.VPS_HOST}}
+                username: ${{secrets.VPS_USER}}
+                key: ${{secrets.VPS_SECRET}}
+                script: |
+                
+                    cd /home/project/ForgeFlows_Front
+                    git pull origin main
+                    
+                    docker image prune -af
+                    docker pull 
+                    docker compose up -d 
+                    
+                    

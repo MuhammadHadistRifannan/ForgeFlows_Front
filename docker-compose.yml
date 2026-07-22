@@ -1,0 +1,10 @@
+version: "1.0"
+
+services:
+  app: 
+    image: bennedistus/forge_flows_front:v1
+    container_name: forge_flows_front
+    ports:
+      - "3000:3000"
+    restart: unless-stopped
+  
