@@ -1,10 +1,7 @@
 services:
   app: 
-    build: 
-      context: .
-    volumes:
-      - ./:/app
+    image: bennedistus/forge_flows_front:v1
     container_name: forge_flows_front
     ports:
       - "3000:80" # Expose Nginx internal (port 80) ke port 3000 VPS kamu
-    restart: unless-stopped
+    restart: always

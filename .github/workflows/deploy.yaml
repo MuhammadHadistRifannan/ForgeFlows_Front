@@ -34,7 +34,13 @@ jobs:
 
 
                     docker compose down -v
-                    docker compose build --no-cache
+                    docker compose pull
+                    docker create --name temp bennedistus/forge_flows_front:v1
+
+                    docker cp temp:/app/out /home/project/ForgeFlows_Front/out
+
+                    docker rm temp
+
                     docker compose up -d 
                     
                     docker image prune -af 
