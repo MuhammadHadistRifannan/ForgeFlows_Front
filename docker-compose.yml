@@ -1,6 +1,7 @@
 services:
   app: 
-    image: bennedistus/forge_flows_front:v1
+    build: 
+      context: .
     volumes:
       - ./:/app
     container_name: forge_flows_front
