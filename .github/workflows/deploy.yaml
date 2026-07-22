@@ -28,11 +28,15 @@ jobs:
                 username: ${{secrets.VPS_USER}}
                 key: ${{secrets.VPS_SECRET}}
                 script: |
-                
+
+                    cd /home/project/ForgeFlowUI/
+                    
+                    git pull origin main
+
                     docker compose down -v
                     docker image prune -af 
                     docker builder prune -af
-                    
+
                     docker compose pull
                     docker compose up -d 
                     
