@@ -33,7 +33,7 @@ jobs:
                     git pull origin main
                     
                     docker image prune -af
-                    docker pull 
+                    docker compose pull
                     docker compose up -d 
                     
                     
