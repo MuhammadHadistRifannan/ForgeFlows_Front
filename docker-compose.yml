@@ -4,6 +4,8 @@ services:
   app: 
     image: bennedistus/forge_flows_front:v1
     container_name: forge_flows_front
+    volumes:
+      - ./:/app
     ports:
       - "3000:3000"
     restart: unless-stopped
