@@ -31,13 +31,14 @@ jobs:
                 
                     cd /home/project/ForgeFlows_Front
                     git pull origin main
-                    
-                    docker image prune -af 
-                    docker builder prune -af
+
 
                     docker compose down -v
                     docker compose pull
                     docker compose up -d 
+                    
+                    docker image prune -af 
+                    docker builder prune -af
                     
                     docker compose exec app npm install
                     
