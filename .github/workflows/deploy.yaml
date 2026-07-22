@@ -40,5 +40,4 @@ jobs:
                     docker image prune -af 
                     docker builder prune -af
                     
-                    docker compose exec app npm install
                     
